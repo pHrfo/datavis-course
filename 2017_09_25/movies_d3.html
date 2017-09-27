@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Filmes</title>
+    <link rel="stylesheet" href="movies.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="movies.js"></script>
+</head>
+<body>
+	<div class="exercise" id="e1">
+		<h1>Questão 01 - Filmes e seus Arrecadamentos Mundiais</h1>
+		<div class="chart" id="box-office"></div>
+	</div>
+
+	<div class="exercise" id="e2">
+		<h1>Questão 02 - Filmes e seus Orçamentos</h1>
+		<div class="chart" id="budget"></div>
+	</div>
+
+	<div class="exercise" id="e3">
+		<h1>Questão 03 - Filmes e seus Lucros</h1>
+		<div class="chart" id="profit"></div>
+	</div>
+
+	<div class="exercise" id="e4">
+		<h1>Questão 04 - Arrecadamento mundial por gênero</h1>
+		<div class="chart" id="box-office-by-genre"></div>
+	</div>
+
+	<script type="text/javascript">
+		d3.json("movies.json", function(error, json) {
+        	buildGraph("box-office", json, "Worldwide_Gross_M", compare);
+        	buildGraph("budget", json,"Budget_M", compare);
+
+        	var jsonProf = computeProfit(json)
+        	buildGraph("profit", jsonProf, "Profit", compare)
+
+        	var byGenres = groupByGenre(json)
+        	buildGraph("box-office-by-genre", byGenres, "Worldwide_Gross_M", compare)
+    	});
+	</script>
+</body>
