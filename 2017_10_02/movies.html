@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Filmes</title>
+    <link rel="stylesheet" href="css/dc.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/crossfilter.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/dc.js" charset="utf-8"></script>
+    <script src="js/movies.js" charset="utf-8"></script>
+</head>
+<body>
+	<div class="exercise" id="e1">
+		<h1>Questão 01 - Arrecadamento mundial por ano</h1>
+		<div class="chart" id="by-year"></div>
+	</div>
+
+	<script type="text/javascript">
+		var chart = dc.barChart("#by-year");
+		d3.json("movies.json", function(err, data) {
+			if (err){
+				console.log(err)
+				return null
+			}
+			console.log(data)
+			buildGraph01(data, chart)
+		})
+	</script>
+</body>
